@@ -17,3 +17,9 @@ The game has some checks for images of the wrong dimension and such so you might
 ![image](https://user-images.githubusercontent.com/74600302/115036070-48db4980-9f21-11eb-9362-49ff5c15c8df.png)
 
 This patch is intended for translators and others to change the game's contents easily without re-encrypting any files.
+
+# Dependencies:
+
+If you want to build this yourself, you need references to:
+- 0Harmony.dll and BepInEx.dll from .../Aokana/BepInEx/core/ after installing BepInEx.
+- Assembly-CSharp.dll, UnityEngine.dll, and UnityEngine.CoreModule.dll from .../Aokana/Aokana_Data/Managed/

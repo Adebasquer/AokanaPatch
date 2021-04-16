@@ -1,4 +1,4 @@
-# AokanaNoDatPatch
+# AokanaPatch
 An Aokana patcher made using BepInEx which allows the game to read assets directly from .../Aokana/Aokana_Data instead of from the encrypted .../Aokana/Aokana_Data/\*.dat files. 
 
 If no unencrypted file with the correct folder structure is found in .../Aokana/Aokana_Data, the patch gets data from the game's encrypted \*.dat files the using the game's methods.

@@ -23,3 +23,6 @@ This patch is intended for translators and others to change the game's contents 
 If you want to build this yourself, you need references to:
 - 0Harmony.dll and BepInEx.dll from .../Aokana/BepInEx/core/ after installing BepInEx.
 - Assembly-CSharp.dll, UnityEngine.dll, and UnityEngine.CoreModule.dll from .../Aokana/Aokana_Data/Managed/
+
+# Notes:
+There may be an easier way to inject code more directly using https://github.com/NeighTools/UnityDoorstop directly, but I couldn't get it working so BepInEx is used.

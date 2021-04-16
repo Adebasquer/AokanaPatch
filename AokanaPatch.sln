@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AokanaPatch", "AokanaPatch\AokanaPatch.csproj", "{8C982A42-30EC-44CB-AF3C-99CC165AE892}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C982A42-30EC-44CB-AF3C-99CC165AE892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C982A42-30EC-44CB-AF3C-99CC165AE892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C982A42-30EC-44CB-AF3C-99CC165AE892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C982A42-30EC-44CB-AF3C-99CC165AE892}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2746D59-3F36-49EA-A1B0-745B18266DBD}
+	EndGlobalSection
+EndGlobal

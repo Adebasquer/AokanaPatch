@@ -6,6 +6,7 @@ using System.Reflection;
 using BepInEx;
 using HarmonyLib;
 using UnityEngine;
+using TMPro;
 
 namespace AokanaPatch
 {
@@ -63,6 +64,43 @@ namespace AokanaPatch
                 return true;
             }
             
+        }
+    }
+
+    class Font_patch_generic
+    {
+        public static AssetBundle assets;
+        public static string path = Path.Combine(Application.dataPath, "font");
+        public static TMP_FontAsset getFont(TextMeshProUGUI advtext)
+        {
+            TMP_FontAsset font = assets.LoadAsset<TMP_FontAsset>("font.asset");
+            return font;
+        }
+    }
+
+    //Load the font on startup
+    [HarmonyPatch(typeof(UIAdv), "Start")]
+    class Font_patch_startup
+    {
+        static void Postfix(ref TextMeshProUGUI ___advtext)
+        {
+            if (File.Exists(Font_patch_generic.path))
+            {
+                Font_patch_generic.assets = AssetBundle.LoadFromFile(Font_patch_generic.path);
+            }
+        }
+    }
+    //Make sure font is always loaded instead of anything else
+    [HarmonyPatch(typeof(UIAdv), "ChangeFont")]
+    class Font_patch_change
+    {
+        static void Postfix(ref TextMeshProUGUI ___advtext) 
+        {
+            if (File.Exists(Font_patch_generic.path))
+            {
+                TMP_FontAsset font = Font_patch_generic.getFont(___advtext);
+                ___advtext.font = font;
+            }
         }
     }
 }

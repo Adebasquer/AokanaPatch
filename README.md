@@ -18,6 +18,10 @@ The game has some checks for images of the wrong dimension and such so you might
 
 This patch is intended for translators and others to change the game's contents easily without re-encrypting any files.
 
+# Adding Fonts:
+
+I have added the ability to load custom fonts for translation purposes. I've made a tutorial here https://github.com/Adebasquer/AokanaPatch/wiki/Font-Tutorial
+
 # Dependencies:
 
 If you want to build this yourself, you need references to:

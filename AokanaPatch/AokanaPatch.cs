@@ -94,12 +94,13 @@ namespace AokanaPatch
     [HarmonyPatch(typeof(UIAdv), "ChangeFont")]
     class Font_patch_change
     {
-        static void Postfix(ref TextMeshProUGUI ___advtext) 
+        static void Postfix(ref TextMeshProUGUI ___advtext, ref TextMeshProUGUI ___nametext) 
         {
             if (File.Exists(Font_patch_generic.path))
             {
                 TMP_FontAsset font = Font_patch_generic.getFont(___advtext);
                 ___advtext.font = font;
+                ___nametext.font = font;
             }
         }
     }

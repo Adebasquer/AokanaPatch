@@ -6,6 +6,7 @@ using System.Reflection;
 using BepInEx;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace AokanaPatch
@@ -16,6 +17,13 @@ namespace AokanaPatch
         // Awake is called once when both the game and the plug-in are loaded
         void Awake()
         {
+            //var fields = typeof(UIAdv).GetFields();
+            //foreach(var field in fields)
+            //{
+            //    Debug.Log(field);
+            //}
+
+
             UnityEngine.Debug.Log("Aokana patcher is active!");
             Harmony harmony = new Harmony("org.bepinex.plugins.aokanapatch");
             harmony.PatchAll();
@@ -69,9 +77,10 @@ namespace AokanaPatch
 
     class Font_patch_generic
     {
+        public static Type MsgFrame;
         public static AssetBundle assets;
         public static string path = Path.Combine(Application.dataPath, "font");
-        public static TMP_FontAsset getFont(TextMeshProUGUI advtext)
+        public static TMP_FontAsset getFont()
         {
             TMP_FontAsset font = assets.LoadAsset<TMP_FontAsset>("font.asset");
             return font;
@@ -88,6 +97,11 @@ namespace AokanaPatch
             {
                 Font_patch_generic.assets = AssetBundle.LoadFromFile(Font_patch_generic.path);
             }
+            //TextMeshProUGUI[] textObjects = GameObject.FindObjectsOfType<TextMeshProUGUI>();
+            //foreach (TextMeshProUGUI textObject in textObjects)
+            //{
+            //    textObject.font = Font_patch_generic.getFont();
+            //}
         }
     }
     //Make sure font is always loaded instead of anything else
@@ -98,9 +112,36 @@ namespace AokanaPatch
         {
             if (File.Exists(Font_patch_generic.path))
             {
-                TMP_FontAsset font = Font_patch_generic.getFont(___advtext);
+                TMP_FontAsset font = Font_patch_generic.getFont();
                 ___advtext.font = font;
                 ___nametext.font = font;
+                //typeof(TMP_Settings).GetFields("m_defaultFontAsset", BindingFlags.NonPublic).SetValue(null, font);
+            }
+
+            
+        }
+    }
+
+    [HarmonyPatch(typeof(UIBacklog), "Start")]
+    class Font_patch_backlog
+    {
+        static void Postfix(ref object[] ___msgframe, ref GameObject ___uicanvas)
+        {
+            if (File.Exists(Font_patch_generic.path))
+            {
+                ___uicanvas.SetActive(true);
+                TMP_FontAsset font = Font_patch_generic.getFont();
+                for (int i = 0; i < ___msgframe.Length; i++)
+                {
+                    //backlog text hidden inside private type -.- so directly changing font of textmeshpro components by GameObject.find 
+                    var root = GameObject.Find("logt" + i);
+                    var transform = root.transform;
+                    var msgtx = transform.Find("text").GetComponent<TextMeshProUGUI>();
+                    msgtx.font = font;
+                    var nametx = transform.Find("namebg").gameObject.transform.Find("chname").GetComponent<TextMeshProUGUI>();
+                    nametx.font = font;
+                }
+                ___uicanvas.SetActive(false);
             }
         }
     }

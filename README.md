@@ -5,6 +5,7 @@ If no unencrypted file with the correct folder structure is found in .../Aokana/
 
 # Installation:
 - Install BepInEx
+- Note that some versions of BepInEx may not work, use BepInEx_x86_5.4.9.0 if there are any issues.
 https://bepinex.github.io/bepinex_docs/v5.0/articles/user_guide/installation.html
 
 - Place AokanaPatch.dll in .../Aokana/BepInEx/Plugins/
